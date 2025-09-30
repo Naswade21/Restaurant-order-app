@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
+
+body {
+    margin: 2rem;
+    
+} 
+
+.image-sec{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-burger{
+    background-image: url('images-icons/bg-img.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 600px;
+    height: 167px;
+}
+
+h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: .25rem;
+}
+
+.heading-p{
+    margin: auto;
+    font-size: 1.25rem;
+}
+
+.heading-wrap{
+    font-family: "Smythe", system-ui;
+    color: white;
+    padding-left: 3rem;
+}
+
+.menu-wrap{
+    border: solid 1px black;
+    padding: 2rem;
+}
+
+.hidden{
+    display: none;
+}
+
