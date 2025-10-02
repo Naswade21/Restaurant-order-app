@@ -1,14 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    margin: 0;
+}
 
 body {
     margin: auto;
-    
+    font-family: "Smythe", system-ui;
 } 
 
 .image-sec{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .image-burger{
@@ -23,6 +29,7 @@ body {
 h1{
     font-size: 2.5rem;
     font-weight: 700;
+    margin-top: 2rem;
     margin-bottom: .25rem;
 }
 
@@ -32,7 +39,6 @@ h1{
 }
 
 .heading-wrap{
-    font-family: "Smythe", system-ui;
     color: white;
     padding-left: 3rem;
 }
@@ -40,13 +46,62 @@ h1{
 .menu-wrap{
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    border: solid 1px black;
-    padding: 2rem;
+    border-bottom: 1px solid #D2D2D2;
+    padding: 1.5rem;
+    margin: 0 2rem 0 2rem;
+}
+
+.menu-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 4rem;
 }
 
 .menu-emoji{
     font-size: 5rem;
+    margin-right: 2rem;
+}
+
+.item-name{
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: .5rem;
+}
+
+.item-price{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.item-ing{
+    color: #8B8B8B;
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: .5rem;
+}
+
+button{
+    border: solid 1.5px #DEDEDE;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    font-family: "Inter", sans-serif;
+    color: #3C3C3C;
+    font-weight: 200;
+    line-height: 1;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 3ms;
+}
+
+button:hover{
+    background-color: #3C3C3C;
+    color: white;
+    border: none;
 }
 
 .hidden{
