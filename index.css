@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
 
 body {
-    margin: 2rem;
+    margin: auto;
     
 } 
 
@@ -16,7 +16,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    width: 600px;
+    width: 100%;
     height: 167px;
 }
 
@@ -38,8 +38,15 @@ h1{
 }
 
 .menu-wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     border: solid 1px black;
     padding: 2rem;
+}
+
+.menu-emoji{
+    font-size: 5rem;
 }
 
 .hidden{
