@@ -23,9 +23,23 @@
                 <!-- Render the purchase here -->
             </div>
         </section>
-        <div class="check-modal" id="check-modal">
-
-        </div>
+        <div class="modal" id="modal">
+				<div class="close">
+					<div class="close-container">
+						<button class="close-btn" id="close-btn">X</button>
+					</div>
+				</div>
+                <form id="checkout-form">
+                    <div class="card-heading">Enter card details</div>
+                    <input type="text" name="fullName" placeholder="Enter your name" required>
+                    <input type="text" name="creditCard" placeholder="Enter your card number" required>
+                    <input type="text" name="threeDigitCVV" placeholder="Enter CVV" required>
+                    <div id="btn-hold">
+					<!-- Insert one button here with the unique id -->
+				 </div>
+                    <button></button>
+                </form>
+			</div>
     </main>
     <script src="index.js" type="module"></script>
 </body>

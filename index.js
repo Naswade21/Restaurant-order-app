@@ -1,14 +1,30 @@
 import { menuArray } from '/data.js'
 
-//object destructuring
-const { name, ingredients, id, price, emoji } = menuArray
-
 const menu = document.getElementById('menu')
 const checkOut = document.getElementById('checkout')
 
-document.addEventListener('click', (e) => {
-    return e.target.dataset.button ? getButtonTag(e.target.dataset.button) : console.log('What the?')
+document.addEventListener('click', function(e){
+    if(e.target.dataset.button){
+        //renderOrderItem(e.target.dataset.button)
+    }
 })
+
+
+/*
+const renderOrderItem = (buttonId) => {
+    const targetItem = menuArray.filter((food) => `${food.id}` === buttonId)
+
+    checkOut.innerHTML = targetItem.map((menu) => `
+    <div class="checkout-wrap">
+    <div class="menu-content">
+        <div class="item-name">${menu.name}</div>
+        <button class="remove-item" id="remove-item">remove</button>
+    </div>
+    <div class="item-price">$${menu.price}</div>
+    </div>
+    `)
+}
+    */
 
 const getMenuHtml = () => {
     return menuArray.map((menu) => {
@@ -28,19 +44,8 @@ const getMenuHtml = () => {
     }).join('')
 }
 
-function getButtonTag(buttonId){
-    const targetButton = menuArray.filter(function(food){
-        return food.id === buttonId
-    })
-    console.log(targetButton)
-}
-
-
-
 const render = () => {
     return menu.innerHTML = getMenuHtml()
 }
 
 render()
-
-//console.log(getMenuHtml())
