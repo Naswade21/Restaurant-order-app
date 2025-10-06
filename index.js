@@ -15,6 +15,14 @@ document.addEventListener('click', function(e){
     }
 })
 
+const getTotalPrice = () => {
+    const prices = orderItemArray.map((order) => {
+        return order.price
+    })
+
+    return prices.reduce((newOrder, firstOrder) => newOrder + firstOrder, 0)
+}
+
 const getOrderItems = (buttonId) => {
 
     const targetItem = menuArray.filter((order) => {
@@ -31,9 +39,8 @@ const getOrderItems = (buttonId) => {
 
     if(orderItemArray.length >= 1){
         renderOrderItems()
+        renderTotalPrice()
     }
-
-    console.log(orderItemArray)
 }
 
 const removeItems = (removeId) => {
@@ -48,6 +55,7 @@ const removeItems = (removeId) => {
     orderItemArray = deleteOrderItem
 
     renderOrderItems()
+    renderTotalPrice()
 
     if(orderItemArray.length === 0){
          checkOut.classList.add('hidden')
@@ -86,6 +94,10 @@ const getMenuHtml = () => {
                     </div>
                  </div>`
     }).join('')
+}
+
+const renderTotalPrice = () => {
+    return document.getElementById('total-price').textContent = `$${getTotalPrice()}`
 }
 
 const renderOrderItems = () => {
