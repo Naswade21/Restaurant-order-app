@@ -31,13 +31,13 @@
 				</div>
                 <form id="checkout-form">
                     <div class="card-heading">Enter card details</div>
-                    <input type="text" name="fullName" placeholder="Enter your name" required>
-                    <input type="text" name="creditCard" placeholder="Enter your card number" required>
-                    <input type="text" name="threeDigitCVV" placeholder="Enter CVV" required>
+                    <input type="text" minlength="2" maxlength="30" name="fullName" placeholder="Enter your name" required>
+                    <input type="text" maxlength="19" pattern="^(\d{4}\s){3}\d{4}$"  name="creditCard" placeholder="Enter your card number" required>
+                    <input type="text" minlength="3" maxlength="3" name="threeDigitCVV" placeholder="Enter CVV" required>
                     <div id="btn-hold">
 					<!-- Insert one button here with the unique id -->
 				 </div>
-                    <button></button>
+                    <button id="main-form" class="main-button">Pay</button>
                 </form>
 			</div>
     </main>

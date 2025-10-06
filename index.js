@@ -2,6 +2,7 @@ import { menuArray } from '/data.js'
 
 const menu = document.getElementById('menu')
 const checkOut = document.getElementById('checkout')
+const payForm = document.getElementById('checkout-form')
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
