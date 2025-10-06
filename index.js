@@ -2,11 +2,14 @@ import { menuArray } from '/data.js'
 
 const menu = document.getElementById('menu')
 const checkOut = document.getElementById('checkout')
-const payForm = document.getElementById('checkout-form')
+const closeBtn = document.getElementById('close-btn')
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
+        console.log(`button pressed`)
         //renderOrderItem(e.target.dataset.button)
+    } else if(closeBtn){
+        document.getElementById('modal').classList.add('hidden')
     }
 })
 
