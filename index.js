@@ -12,7 +12,13 @@ document.addEventListener('click', function(e){
         getOrderItems(e.target.dataset.button)
     } else if(e.target.dataset.remove) {
         removeItems(e.target.dataset.remove)
+    } else if(e.target.id = 'complete-order'){
+        document.getElementById('modal').classList.toggle('hidden')
     }
+})
+
+closeBtn.addEventListener('click', () => {
+    document.getElementById('modal').classList.toggle('hidden')
 })
 
 const getTotalPrice = () => {
@@ -97,7 +103,8 @@ const getMenuHtml = () => {
 }
 
 const renderTotalPrice = () => {
-    return document.getElementById('total-price').textContent = `$${getTotalPrice()}`
+    document.getElementById('total-price').textContent = `$${getTotalPrice()}`
+    document.getElementById('pay-total').textContent = `Pay $${getTotalPrice()}`
 }
 
 const renderOrderItems = () => {
