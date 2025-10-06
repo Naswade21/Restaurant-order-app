@@ -53,14 +53,20 @@ h1{
     margin: 0 2rem 0 2rem;
 }
 
+.checkout{
+    padding: 2rem;
+}
+
 .checkout-wrap{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid black;
     padding: 1.5rem;
-    margin: 0 2rem 0 2rem;
+}
+
+.border{
+    border-bottom: 2px solid black;
 }
 
 .menu-content{

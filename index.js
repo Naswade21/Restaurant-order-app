@@ -1,9 +1,10 @@
 import { menuArray } from '/data.js'
 
 const menu = document.getElementById('menu')
-const checkOut = document.getElementById('checkout')
 const closeBtn = document.getElementById('close-btn')
-let orderItems = []
+const checkOut = document.getElementById('checkout')
+const orderItems = document.getElementById('order-items')
+let orderItemArray = []
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
@@ -16,15 +17,19 @@ const getOrderItems = (buttonId) => {
         return `${order.id}` === buttonId
     })[0]
 
-    orderItems.push(targetItem)
+    orderItemArray.push(targetItem)
 
-    orderItems.length >= 1 ? console.log('Show my order bro!') : console.log('You gonna order?')
+    checkOut.classList.remove('hidden')
 
-    console.log(orderItems)
+    if(orderItemArray.length >= 1){
+        orderItems.innerHTML = showOrderItems()
+    }
+
+    console.log(orderItemArray)
 }
 
 const showOrderItems = () => {
-    return orderItems.map((menu) => {
+    return orderItemArray.map((menu) => {
         return `
     <div class="checkout-wrap">
         <div class="menu-content">
@@ -33,7 +38,7 @@ const showOrderItems = () => {
          </div>
         <div class="item-price">$${menu.price}</div>
     </div>`
-    })
+    }).join('')
 }
 
 
