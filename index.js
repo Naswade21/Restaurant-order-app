@@ -3,13 +3,38 @@ import { menuArray } from '/data.js'
 const menu = document.getElementById('menu')
 const checkOut = document.getElementById('checkout')
 const closeBtn = document.getElementById('close-btn')
+let orderItems = []
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
-        console.log(`button pressed`)
-        //renderOrderItem(e.target.dataset.button)
+        getOrderItems(e.target.dataset.button)
     } 
 })
+
+const getOrderItems = (buttonId) => {
+    const targetItem = menuArray.filter((order) => {
+        return `${order.id}` === buttonId
+    })[0]
+
+    orderItems.push(targetItem)
+
+    orderItems.length >= 1 ? console.log('Show my order bro!') : console.log('You gonna order?')
+
+    console.log(orderItems)
+}
+
+const showOrderItems = () => {
+    return orderItems.map((menu) => {
+        return `
+    <div class="checkout-wrap">
+        <div class="menu-content">
+            <div class="item-name">${menu.name}</div>
+            <button class="remove-item" id="remove-item">remove</button>
+         </div>
+        <div class="item-price">$${menu.price}</div>
+    </div>`
+    })
+}
 
 
 /*
