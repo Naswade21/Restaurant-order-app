@@ -16,13 +16,16 @@ document.addEventListener('click', function(e){
 })
 
 const getOrderItems = (buttonId) => {
+
     const targetItem = menuArray.filter((order) => {
         return `${order.id}` === buttonId
     })[0]
 
-    targetItem.uuid = uuidv4()
+    const copiedTargetItem = {...targetItem}
 
-    orderItemArray.push(targetItem)
+    copiedTargetItem.uuid = uuidv4()
+
+    orderItemArray.push(copiedTargetItem)
 
     checkOut.classList.remove('hidden')
 
@@ -34,11 +37,15 @@ const getOrderItems = (buttonId) => {
 }
 
 const removeItems = (removeId) => {
-   const targetItem = orderItemArray.filter((order) => {
-        return order.uuid != removeId
-    }) 
+   const deleteOrderItem = orderItemArray.filter((order) => {
+    if(removeId === order.uuid){
+        return false
+    }
 
-    orderItemArray = targetItem
+    return true
+   })
+
+    orderItemArray = deleteOrderItem
 
     renderOrderItems()
 
@@ -47,6 +54,7 @@ const removeItems = (removeId) => {
     }
     
     console.log(orderItemArray)
+  
 }
 
 const showOrderItems = () => {
