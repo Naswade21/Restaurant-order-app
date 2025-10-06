@@ -1,4 +1,5 @@
 import { menuArray } from '/data.js'
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
 const menu = document.getElementById('menu')
 const closeBtn = document.getElementById('close-btn')
@@ -9,7 +10,9 @@ let orderItemArray = []
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
         getOrderItems(e.target.dataset.button)
-    } 
+    } else if(e.target.dataset.remove) {
+        removeItems(e.target.dataset.remove)
+    }
 })
 
 const getOrderItems = (buttonId) => {
@@ -17,14 +20,32 @@ const getOrderItems = (buttonId) => {
         return `${order.id}` === buttonId
     })[0]
 
+    targetItem.uuid = uuidv4()
+
     orderItemArray.push(targetItem)
 
     checkOut.classList.remove('hidden')
 
     if(orderItemArray.length >= 1){
-        orderItems.innerHTML = showOrderItems()
+        renderOrderItems()
     }
 
+    console.log(orderItemArray)
+}
+
+const removeItems = (removeId) => {
+   const targetItem = orderItemArray.filter((order) => {
+        return order.uuid != removeId
+    }) 
+
+    orderItemArray = targetItem
+
+    renderOrderItems()
+
+    if(orderItemArray.length === 0){
+         checkOut.classList.add('hidden')
+    }
+    
     console.log(orderItemArray)
 }
 
@@ -34,29 +55,12 @@ const showOrderItems = () => {
     <div class="checkout-wrap">
         <div class="menu-content">
             <div class="item-name">${menu.name}</div>
-            <button class="remove-item" id="remove-item">remove</button>
+            <button class="remove-item" data-remove="${menu.uuid}">remove</button>
          </div>
         <div class="item-price">$${menu.price}</div>
     </div>`
     }).join('')
 }
-
-
-/*
-const renderOrderItem = (buttonId) => {
-    const targetItem = menuArray.filter((food) => `${food.id}` === buttonId)
-
-    checkOut.innerHTML = targetItem.map((menu) => `
-    <div class="checkout-wrap">
-    <div class="menu-content">
-        <div class="item-name">${menu.name}</div>
-        <button class="remove-item" id="remove-item">remove</button>
-    </div>
-    <div class="item-price">$${menu.price}</div>
-    </div>
-    `)
-}
-    */
 
 const getMenuHtml = () => {
     return menuArray.map((menu) => {
@@ -74,6 +78,10 @@ const getMenuHtml = () => {
                     </div>
                  </div>`
     }).join('')
+}
+
+const renderOrderItems = () => {
+    return orderItems.innerHTML = showOrderItems()
 }
 
 const render = () => {
