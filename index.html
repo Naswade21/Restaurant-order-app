@@ -23,7 +23,7 @@
                 <!-- Render the purchase here -->
             </div>
         </section>
-        <div class="modal" id="modal">
+        <div class="modal hidden" id="modal">
 				<div class="close">
 					<div class="close-container">
 						<button class="close-btn" id="close-btn">X</button>
@@ -33,11 +33,11 @@
                     <div class="card-heading">Enter card details</div>
                     <input type="text" minlength="2" maxlength="30" name="fullName" placeholder="Enter your name" required>
                     <input type="text" maxlength="19" pattern="^(\d{4}\s){3}\d{4}$"  name="creditCard" placeholder="Card number: 0000 0000 0000 0000" required>
-                    <input type="text" minlength="3" maxlength="3" name="threeDigitCVV" placeholder="Enter CVV" required>
+                    <input type="text" minlength="3" maxlength="3" pattern="^\d{3}$" name="threeDigitCVV" placeholder="Enter CVV: 000" required>
                     <div id="btn-hold">
 					<!-- Insert one button here with the unique id -->
 				 </div>
-                    <button id="main-form" class="main-button">Pay</button>
+                    <button id="main-button" class="main-button">Pay</button>
                 </form>
 			</div>
     </main>

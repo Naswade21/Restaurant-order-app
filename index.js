@@ -8,9 +8,7 @@ document.addEventListener('click', function(e){
     if(e.target.dataset.button){
         console.log(`button pressed`)
         //renderOrderItem(e.target.dataset.button)
-    } else if(closeBtn){
-        document.getElementById('modal').classList.add('hidden')
-    }
+    } 
 })
 
 
