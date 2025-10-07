@@ -207,6 +207,10 @@ input{
     padding: 2rem;
 }
 
+#order-completion{
+    margin-top: 1rem;
+}
+
 .modal-appear{
     display: block;
 }

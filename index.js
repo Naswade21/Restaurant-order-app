@@ -9,6 +9,7 @@ const orderItems = document.getElementById('order-items')
 const completeOrderBtn = document.getElementById('complete-order')
 const totalPrice = document.getElementById('total-price')
 const totalPay = document.getElementById('pay-total')
+const completeOrder = document.getElementById('order-completion')
 let orderItemArray = []
 
 document.addEventListener('click', function(e){
@@ -35,7 +36,18 @@ checkOutForm.addEventListener('submit', (e) => {
 
     document.getElementById('modal').classList.add('hidden')
 
-    checkOut.innerHTML = `<div class="order-done">Thanks, ${name}! Your order is on its way!</div>`
+    let customerMessage = `<div class="order-done">Thanks, ${name}! Your order is on its way!</div>`
+
+    checkOut.classList.add('hidden')
+
+    completeOrder.innerHTML = customerMessage
+
+    completeOrder.classList.toggle('hidden')
+
+    setTimeout(() => {
+        orderItemArray = []
+        completeOrder.classList.toggle('hidden')
+    }, 3000)
 })
 
 
