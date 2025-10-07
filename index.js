@@ -4,7 +4,11 @@ import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 const menu = document.getElementById('menu')
 const closeBtn = document.getElementById('close-btn')
 const checkOut = document.getElementById('checkout')
+const checkOutForm = document.getElementById('checkout-form')
 const orderItems = document.getElementById('order-items')
+const completeOrderBtn = document.getElementById('complete-order')
+const totalPrice = document.getElementById('total-price')
+const totalPay = document.getElementById('pay-total')
 let orderItemArray = []
 
 document.addEventListener('click', function(e){
@@ -12,14 +16,28 @@ document.addEventListener('click', function(e){
         getOrderItems(e.target.dataset.button)
     } else if(e.target.dataset.remove) {
         removeItems(e.target.dataset.remove)
-    } else if(e.target.id = 'complete-order'){
-        document.getElementById('modal').classList.toggle('hidden')
-    }
+    } 
+})
+
+completeOrderBtn.addEventListener('click', () => {
+    document.getElementById('modal').classList.remove('hidden')
 })
 
 closeBtn.addEventListener('click', () => {
-    document.getElementById('modal').classList.toggle('hidden')
+    document.getElementById('modal').classList.add('hidden')
 })
+
+checkOutForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const payForm = new FormData(checkOutForm)
+    const name = payForm.get('fullName')
+
+    document.getElementById('modal').classList.add('hidden')
+
+    checkOut.innerHTML = `<div class="order-done">Thanks, ${name}! Your order is on its way!</div>`
+})
+
 
 const getTotalPrice = () => {
     const prices = orderItemArray.map((order) => {
@@ -103,8 +121,8 @@ const getMenuHtml = () => {
 }
 
 const renderTotalPrice = () => {
-    document.getElementById('total-price').textContent = `$${getTotalPrice()}`
-    document.getElementById('pay-total').textContent = `Pay $${getTotalPrice()}`
+    totalPrice.textContent = `$${getTotalPrice()}`
+    totalPay.textContent = `Pay $${getTotalPrice()}`
 }
 
 const renderOrderItems = () => {
