@@ -1,16 +1,13 @@
 import { menuArray } from '/data.js'
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 
-const menu = document.getElementById('menu')
 const closeBtn = document.getElementById('close-btn')
+const modal = document.getElementById('modal')
 const checkOut = document.getElementById('checkout')
 const checkOutForm = document.getElementById('checkout-form')
-const orderItems = document.getElementById('order-items')
 const completeOrderBtn = document.getElementById('complete-order')
-const totalPrice = document.getElementById('total-price')
-const totalPay = document.getElementById('pay-total')
-const completeOrder = document.getElementById('order-completion')
 let orderItemArray = []
+let discountPrice = 5
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
@@ -21,24 +18,26 @@ document.addEventListener('click', function(e){
 })
 
 completeOrderBtn.addEventListener('click', () => {
-    document.getElementById('modal').classList.remove('hidden')
+    modal.classList.remove('hidden')
 })
 
 closeBtn.addEventListener('click', () => {
-    document.getElementById('modal').classList.add('hidden')
+    modal.classList.add('hidden')
 })
 
 checkOutForm.addEventListener('submit', (e) => {
     e.preventDefault()
 
+    const completeOrder = document.getElementById('order-completion')
+
     const payForm = new FormData(checkOutForm)
     const name = payForm.get('fullName')
 
-    document.getElementById('modal').classList.add('hidden')
-
-    let customerMessage = `<div class="order-done">Thanks, ${name}! Your order is on its way!</div>`
+    modal.classList.add('hidden')
 
     checkOut.classList.add('hidden')
+
+    let customerMessage = `<div class="order-done">Thanks, ${name}! Your order is on its way!</div>`
 
     completeOrder.innerHTML = customerMessage
 
@@ -56,7 +55,7 @@ const getTotalPrice = () => {
         return order.price
     })
 
-    return prices.reduce((newOrder, firstOrder) => newOrder + firstOrder, 0)
+    return prices.reduce((newOrder, firstOrder) => newOrder + firstOrder, 0) - discountPrice
 }
 
 const getOrderItems = (buttonId) => {
@@ -73,11 +72,34 @@ const getOrderItems = (buttonId) => {
 
     checkOut.classList.remove('hidden')
 
+    console.log(orderItemArray)
+
     if(orderItemArray.length >= 1){
         renderOrderItems()
         renderTotalPrice()
     }
 }
+
+/*
+const discountTheOrder = (arr) => {
+    const discountItems = arr.map((order) => {
+        return order.name
+    })
+
+    const copiedDiscountItems = [...discountItems]
+
+    const countItems = copiedDiscountItems.reduce((newOrder, currentOrder) => {
+        newOrder[currentOrder] = (newOrder[currentOrder] || 0) + 1
+        return newOrder
+    }, {})
+
+    console.log(countItems)
+
+    if(countItems.Pizza === countItems.Beer){
+        return discountPrice = Number(countItems.Pizza) * 5
+    }
+}
+    */
 
 const removeItems = (removeId) => {
    const deleteOrderItem = orderItemArray.filter((order) => {
@@ -96,9 +118,8 @@ const removeItems = (removeId) => {
     if(orderItemArray.length === 0){
          checkOut.classList.add('hidden')
     }
-    
-    console.log(orderItemArray)
   
+    console.log(orderItemArray)
 }
 
 const showOrderItems = () => {
@@ -133,15 +154,24 @@ const getMenuHtml = () => {
 }
 
 const renderTotalPrice = () => {
+    const totalPrice = document.getElementById('total-price')
+
+    const totalPay = document.getElementById('pay-total')
+
     totalPrice.textContent = `$${getTotalPrice()}`
+
     totalPay.textContent = `Pay $${getTotalPrice()}`
 }
 
 const renderOrderItems = () => {
+    const orderItems = document.getElementById('order-items')
+
     return orderItems.innerHTML = showOrderItems()
 }
 
 const render = () => {
+    const menu = document.getElementById('menu')
+
     return menu.innerHTML = getMenuHtml()
 }
 
