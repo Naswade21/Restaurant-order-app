@@ -198,7 +198,7 @@ input{
     border: none;
 }
 
-.order-done{
+.order-done, .dicount-banner{
     background-color: #FFF9E7;
     color: #F3BE11;
     font-size: 2rem;
