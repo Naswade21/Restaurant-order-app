@@ -8,14 +8,26 @@ const checkOutForm = document.getElementById('checkout-form')
 const completeOrderBtn = document.getElementById('complete-order')
 let orderItemArray = []
 let discountPrice = 0
+let stars = document.querySelectorAll(".rye-wrap i")
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
         getOrderItems(e.target.dataset.button)
     } else if(e.target.dataset.remove) {
         removeItems(e.target.dataset.remove)
-    } 
+    }
 })
+
+const rateYourExp = () => {
+    stars.forEach((star, indx) => {
+        star.addEventListener('click', () => {
+            stars.forEach((star, indxTwo) => {
+               indx >= indxTwo ? star.classList.add('active') : star.classList.remove('active')
+            })
+        })
+    })
+}
+
 
 completeOrderBtn.addEventListener('click', () => {
     modal.classList.remove('hidden')
@@ -164,5 +176,7 @@ const render = () => {
 
     return menu.innerHTML = getMenuHtml()
 }
+
+
 
 render()
