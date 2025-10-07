@@ -136,6 +136,12 @@ button:hover{
     flex-direction: row-reverse;
 }
 
+.rye-close{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
 .close-btn{
     background: transparent;
     border: none;
@@ -173,6 +179,7 @@ button:hover{
 
 .rye-wrap i{
     font-size: 2rem;
+    color: grey;
     cursor: pointer;
     transition: color .4s ease;
 }

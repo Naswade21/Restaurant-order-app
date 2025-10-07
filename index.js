@@ -6,9 +6,11 @@ const modal = document.getElementById('modal')
 const checkOut = document.getElementById('checkout')
 const checkOutForm = document.getElementById('checkout-form')
 const completeOrderBtn = document.getElementById('complete-order')
+const expModal = document.getElementById('exp')
+const expCloseBtn = document.getElementById('rye-close-btn')
 let orderItemArray = []
 let discountPrice = 0
-let stars = document.querySelectorAll(".rye-wrap i")
+let stars = document.querySelectorAll(".rye-wrap i") //querySelectorAll returns a NodeList which is an Array-like structure allowing to use Array methods
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
@@ -19,15 +21,14 @@ document.addEventListener('click', function(e){
 })
 
 const rateYourExp = () => {
-    stars.forEach((star, indx) => {
-        star.addEventListener('click', () => {
-            stars.forEach((star, indxTwo) => {
+    stars.forEach((star, indx) => { //Iterates through each star
+        star.addEventListener('click', () => { //Listens for clicks on each star
+            stars.forEach((star, indxTwo) => { //Ternary activates on each star depending if the first iteration is greater than or equal to the second iteration
                indx >= indxTwo ? star.classList.add('active') : star.classList.remove('active')
             })
         })
     })
 }
-
 
 completeOrderBtn.addEventListener('click', () => {
     modal.classList.remove('hidden')
@@ -35,6 +36,10 @@ completeOrderBtn.addEventListener('click', () => {
 
 closeBtn.addEventListener('click', () => {
     modal.classList.add('hidden')
+})
+
+expCloseBtn.addEventListener('click', () => {
+    expModal.classList.add('hidden')
 })
 
 checkOutForm.addEventListener('submit', (e) => {
@@ -58,6 +63,12 @@ checkOutForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         orderItemArray = []
         completeOrder.classList.toggle('hidden')
+    }, 2000)
+
+    setTimeout(() => {
+        expModal.classList.toggle('hidden')
+
+        rateYourExp()
     }, 3000)
 })
 
@@ -176,7 +187,5 @@ const render = () => {
 
     return menu.innerHTML = getMenuHtml()
 }
-
-
 
 render()
