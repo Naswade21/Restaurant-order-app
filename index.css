@@ -14,7 +14,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
 }
 
 .image-burger{
@@ -198,7 +197,7 @@ input{
     border: none;
 }
 
-.order-done, .dicount-banner{
+.dicount-banner{
     background-color: #FFF9E7;
     color: #F3BE11;
     font-size: 2rem;
@@ -207,8 +206,25 @@ input{
     padding: 2rem;
 }
 
+#discount-message{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.order-done{
+   background-color: #ECFDF5;
+    color: #065F46;
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 2rem; 
+}
+
 #order-completion{
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .modal-appear{

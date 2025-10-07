@@ -7,7 +7,7 @@ const checkOut = document.getElementById('checkout')
 const checkOutForm = document.getElementById('checkout-form')
 const completeOrderBtn = document.getElementById('complete-order')
 let orderItemArray = []
-let discountPrice = 5
+let discountPrice = 0
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.button){
@@ -51,6 +51,21 @@ checkOutForm.addEventListener('submit', (e) => {
 
 
 const getTotalPrice = () => {
+    const countItems = orderItemArray.reduce((newOrder, currentOrder) => {
+        const foodName = currentOrder.name
+        newOrder[foodName] = (newOrder[foodName] || 0) + 1
+        return newOrder
+    }, {})
+
+    if(countItems.Pizza === countItems.Beer){
+        discountPrice = 5 * Number(countItems.Pizza)
+        document.getElementById('discount-message').textContent = `$${discountPrice} Discount Applied!`
+    }
+    else{
+        discountPrice = 0
+        document.getElementById('discount-message').textContent = ``
+    }
+
     const prices = orderItemArray.map((order) => {
         return order.price
     })
@@ -72,34 +87,11 @@ const getOrderItems = (buttonId) => {
 
     checkOut.classList.remove('hidden')
 
-    console.log(orderItemArray)
-
     if(orderItemArray.length >= 1){
         renderOrderItems()
         renderTotalPrice()
     }
 }
-
-/*
-const discountTheOrder = (arr) => {
-    const discountItems = arr.map((order) => {
-        return order.name
-    })
-
-    const copiedDiscountItems = [...discountItems]
-
-    const countItems = copiedDiscountItems.reduce((newOrder, currentOrder) => {
-        newOrder[currentOrder] = (newOrder[currentOrder] || 0) + 1
-        return newOrder
-    }, {})
-
-    console.log(countItems)
-
-    if(countItems.Pizza === countItems.Beer){
-        return discountPrice = Number(countItems.Pizza) * 5
-    }
-}
-    */
 
 const removeItems = (removeId) => {
    const deleteOrderItem = orderItemArray.filter((order) => {
@@ -118,8 +110,6 @@ const removeItems = (removeId) => {
     if(orderItemArray.length === 0){
          checkOut.classList.add('hidden')
     }
-  
-    console.log(orderItemArray)
 }
 
 const showOrderItems = () => {
