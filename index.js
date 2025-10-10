@@ -80,13 +80,15 @@ const getTotalPrice = () => {
         return newOrder
     }, {})
 
-    if(countItems.Pizza === countItems.Beer){
-        discountPrice = 5 * Number(countItems.Pizza)
-        document.getElementById('discount-message').textContent = `$${discountPrice} Discount Applied!`
-    }
-    else{
+    console.log(countItems)
+
+    if(countItems.Pizza === 0){
         discountPrice = 0
         document.getElementById('discount-message').textContent = ``
+    }
+    else if(countItems.Pizza === countItems.Beer){
+        discountPrice = 5 * Number(countItems.Pizza)
+        document.getElementById('discount-message').textContent = `$${discountPrice} Discount Applied!`
     }
 
     const prices = orderItemArray.map((order) => {
@@ -116,6 +118,8 @@ const getOrderItems = (buttonId) => {
     }
 }
 
+//removeId === order.uuid ? false : true
+
 const removeItems = (removeId) => {
    const deleteOrderItem = orderItemArray.filter((order) => {
     if(removeId === order.uuid){
@@ -125,14 +129,14 @@ const removeItems = (removeId) => {
     return true
    })
 
-    orderItemArray = deleteOrderItem
+   let copiedDeleteItems = [...deleteOrderItem]
+
+    orderItemArray = copiedDeleteItems
 
     renderOrderItems()
     renderTotalPrice()
 
-    if(orderItemArray.length === 0){
-         checkOut.classList.add('hidden')
-    }
+    orderItemArray.length === 0 ? checkOut.classList.add('hidden') : console.log('')
 }
 
 const showOrderItems = () => {
